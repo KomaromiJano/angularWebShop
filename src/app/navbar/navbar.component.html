@@ -1,0 +1,63 @@
+<nav class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="/" class="text-2xl font-bold text-blue-600">ShopLogo</a>
+            </div>
+
+            <!-- Links -->
+            <div class="hidden md:flex space-x-6">
+                <a href="/shop" class="text-gray-700 hover:text-blue-600 font-medium">Shop</a>
+                <a href="/about" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex items-center space-x-2">
+                <input type="text" placeholder="Search products..."
+                    class="w-64 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring focus:ring-blue-200 focus:border-blue-600" />
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    Search
+                </button>
+            </div>
+
+            <!-- Icons (Cart & Profile) -->
+            <div class="flex items-center space-x-4">
+                <a href="/cart" class="text-gray-700 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M10 21h4M7 5h10" />
+                    </svg>
+                </a>
+                <a href="/profile" class="text-gray-700 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.121 17.804A10.964 10.964 0 0112 15c2.5 0 4.847.847 6.879 2.26M15 12a3 3 0 11-6 0 3 3 0 016 0zm-3-9a9 9 0 100 18 9 9 0 000-18z" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+                    (click)="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div *ngIf="menu" id="mobile-menu" class="md:hidden mt-4">
+            <a href="/shop" class="block text-gray-700 hover:text-blue-600 py-2">Shop</a>
+            <a href="/about" class="block text-gray-700 hover:text-blue-600 py-2">About</a>
+            <a href="/contact" class="block text-gray-700 hover:text-blue-600 py-2">Contact</a>
+        </div>
+    </div>
+</nav>

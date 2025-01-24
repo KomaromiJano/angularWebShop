@@ -1,0 +1,20 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+    <div *ngFor="let product of products" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md">
+        <img class="rounded-t-lg w-full h-48 object-cover" [src]="product.keplink" [alt]="product.termeknev" />
+        <div class="p-4">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900">
+                {{ product.termeknev }}
+            </h5>
+            <p class="text-gray-700 text-sm mt-2">{{ product.leiras }}</p>
+            <div class="flex flex-col lg:flex-row justify-between items-center mt-4">
+                <span class="text-lg font-bold text-gray-900">
+                    {{ product.ar | currency: 'HUF' }}
+                </span>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 my-8 lg:my-2">
+                    Kosárba
+                </button>
+            </div>
+            <p class="text-gray-500 text-xs mt-2">Elérhető mennyiség: {{ product.mennyiseg }}</p>
+        </div>
+    </div>
+</div>
