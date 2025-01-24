@@ -1,0 +1,60 @@
+<div class="max-w-4xl mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Kosár tartalma</h2>
+
+    <div *ngIf="kosar.length > 0; else uresKosar">
+
+        <div class="grid grid-cols-5 items-center justify-between">
+            <div class="col-span-3">Termék</div>
+            <div class="col-span-2 flex justify-center gap-12 items-center text-left">
+                <p>Egységár</p>
+                <p>Mennyiség</p>
+                <p>Részösszeg</p>
+            </div>
+        </div>
+
+        <div *ngFor="let item of kosar"
+            class="bg-white p-4 mb-4 rounded-lg shadow-lg grid grid-cols-5 items-center justify-center">
+
+            <div class="col-span-3 flex">
+                <!-- Termék kép -->
+                <img [src]="item.termek.keplink" alt="Termék kép" class="w-24 h-24 object-cover rounded-md mr-4">
+
+                <!-- Termék adatai -->
+                <div class="flex-1">
+                    <h3 class="text-xl font-semibold">{{ item.termek.termeknev }}</h3>
+                    <p class="text-gray-500 text-sm">{{ item.termek.leiras }}</p>
+                    <p class="text-sm text-gray-400">Készlet: {{ item.termek.mennyiseg }} db</p>
+                </div>
+            </div>
+
+            <!-- Darabszám és eltávolítás -->
+            <div class="text-center col-span-2 grid grid-cols-3 gap-4 items-center justify-center gap-4">
+                <p>{{ item.termek.ar }} HUF</p>
+                <input [(ngModel)]="item.db" type="number" min="0"
+                    (ngModelChange)="updateQuantity(item.termek.id, item.db)" [max]="item.termek.mennyiseg"
+                    class="w-16 text-center border p-1 rounded-md" />
+                <p>{{ item.termek.ar * item.db }} HUF</p>
+                <!--<button (click)="updateQuantity(item.termek.id, item.db)"
+                    class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-lg hover:bg-blue-600">Módosítás</button>-->
+                <!-- <button (click)="removeFromBasket(item.termek.id)"
+                    class="mt-2 bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600">Eltávolítás</button>-->
+            </div>
+        </div>
+
+        <!-- Kosár törlés -->
+        <div class="text-right mt-4">
+            <button (click)="clearBasket()" class="bg-gray-800 text-white py-2 px-6 rounded-lg hover:bg-gray-700">Kosár
+                ürítése</button>
+        </div>
+
+        <!-- Összegzés -->
+        <div class="mt-6 text-right">
+            <p class="text-xl font-semibold">Összesen: {{ totalPrice | currency:'HUF' }}</p>
+        </div>
+    </div>
+
+    <!-- Ha a kosár üres -->
+    <ng-template #uresKosar>
+        <p class="text-center text-gray-600">A kosár üres.</p>
+    </ng-template>
+</div>

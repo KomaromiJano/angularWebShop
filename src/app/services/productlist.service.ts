@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductlistService {
 
-  private base = "http://localhost:3000/termekek/"
+  private base = "https://wide-strength-257919.firebaseio.com/termekek"
   private productsSub = new BehaviorSubject<any>(null)
 
   constructor(
@@ -16,30 +16,36 @@ export class ProductlistService {
     this.downloadProducts()
   }
 
-  getProducts(){
+  getProducts() {
     return this.productsSub;
   }
 
-  private downloadProducts(){
-    this.http.get(this.base).subscribe(
-      (product) => this.productsSub.next(product)
+  private downloadProducts() {
+    this.http.get(this.base + ".json").subscribe(
+      (products: any) => {
+        let tomb = []
+        for (const key in products) {
+          tomb.push({ id: key, ...products[key] })
+        }
+        this.productsSub.next(tomb)
+      }
     )
   }
 
-  postProduct(product:any){
-    this.http.post(this.base,product).forEach(
+  postProduct(product: any) {
+    this.http.post(this.base, product).forEach(
       () => this.downloadProducts()
     )
   }
 
-  putProduct(product:any){
-    this.http.put(this.base+product.id,product).forEach(
+  putProduct(product: any) {
+    this.http.put(this.base + product.id, product).forEach(
       () => this.downloadProducts()
     )
   }
 
-  deleteProduct(product:any){
-    this.http.delete(this.base+product.id).forEach(
+  deleteProduct(product: any) {
+    this.http.delete(this.base + product.id).forEach(
       () => this.downloadProducts()
     )
   }

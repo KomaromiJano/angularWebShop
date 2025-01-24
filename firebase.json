@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "site": "angularwebshop2025",
+    "public": "dist/web-shop/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

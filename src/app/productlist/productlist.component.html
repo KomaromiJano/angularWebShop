@@ -10,7 +10,13 @@
                 <span class="text-lg font-bold text-gray-900">
                     {{ product.ar | currency: 'HUF' }}
                 </span>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 my-8 lg:my-2">
+                <button (click)="add(product,1)" 
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 my-8 lg:my-2"
+                [ngClass]="{ 'bg-green-500 hover:bg-green-600': kosar[product.id]?.db != null }"
+                >
+                    <span *ngIf="kosar[product.id]?.db != null">
+                        {{ kosar[product.id]?.db }} x
+                    </span>
                     Kosárba
                 </button>
             </div>
